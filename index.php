@@ -1,6 +1,6 @@
 <?php 
 
-$username = $email = $comment = '';
+$username = $email = $comment = $issue_type = '';
 
 if(isset($_REQUEST['edit_previous']) AND $_REQUEST['edit_previous'] == 'true') {
   // An issue is available for editing
@@ -10,6 +10,7 @@ if(isset($_REQUEST['edit_previous']) AND $_REQUEST['edit_previous'] == 'true') {
     $username = $issue['username'];
     $email = $issue['email'];
     $comment = $issue['comment'];
+    $issue_type = $issue['issue_type'];
   } 
 }
 
@@ -41,10 +42,10 @@ if(isset($_REQUEST['edit_previous']) AND $_REQUEST['edit_previous'] == 'true') {
 
           <label for="issue">Tell us what this message is for</label>
           <select class="custom-select mb-3" name="issue-type" id="issue" required>
-            <option value="complaint">Complaint</option>
-            <option value="query">Query</option>
-            <option value="feedback">Feedback</option>
-            <option value="other">Other</option>
+            <option <?php if($issue_type == 'complaint') echo 'selected'; ?> value="complaint">Complaint</option>
+            <option <?php if($issue_type == 'query') echo 'selected'; ?> value="query">Query</option>
+            <option <?php if($issue_type == 'feedback') echo 'selected'; ?> value="feedback">Feedback</option>
+            <option <?php if($issue_type == 'other') echo 'selected'; ?> value="other">Other</option>
           </select>
 
           <div class="form-group">
