@@ -1,12 +1,12 @@
 <?php 
-
-$username = $email = $comment = $issue_type = '';
+// Initialize these variables to an empty string to prevent undefined errors 
+$username = $email = $comment = $issue_type = $mode = '';
 
 if(isset($_REQUEST['edit_previous']) AND $_REQUEST['edit_previous'] == 'true') {
   // An issue is available for editing
   if(isset($_COOKIE['issue'])) {
     $issue = unserialize($_COOKIE['issue']);
-
+    $mode = 'edit_mode';
     $username = $issue['username'];
     $email = $issue['email'];
     $comment = $issue['comment'];
@@ -56,7 +56,10 @@ if(isset($_REQUEST['edit_previous']) AND $_REQUEST['edit_previous'] == 'true') {
             </div>
           </div>
 
-           <button type="submit" name="submit_issue" class="btn btn-primary">Submit</button>
+          <button type="submit" name="submit_issue" class="btn btn-primary">Update</button>
+          <?php  if($mode == 'edit_mode') {?>
+            <a href="pages/review.php" name="cancel_edit" class="btn btn-danger">Cancel editing</a>
+          <?php } ?>
         </form>
       </div>
     </div>
