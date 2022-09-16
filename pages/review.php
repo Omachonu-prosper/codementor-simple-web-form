@@ -31,6 +31,7 @@ if(isset($_COOKIE['issue'])) {
           Best Regards Omachonu Prosper - Creator
         </h6>
         <a href="/?edit_previous=true" class="card-link btn btn-primary">Edit</a>
+        <a href="/scripts/delete.php" name="cancel_edit" class="btn btn-danger">Delete</a>
       </div>
     </div>
   </div>
