@@ -2,7 +2,7 @@
 
 $username = $email = $comment = '';
 
-if($_REQUEST['edit_previous'] == 'true') {
+if(isset($_REQUEST['edit_previous']) AND $_REQUEST['edit_previous'] == 'true') {
   // An issue is available for editing
   if(isset($_COOKIE['issue'])) {
     $issue = unserialize($_COOKIE['issue']);
