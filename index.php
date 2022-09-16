@@ -11,7 +11,7 @@ if(isset($_REQUEST['edit_previous']) AND $_REQUEST['edit_previous'] == 'true') {
     $email = $issue['email'];
     $comment = $issue['comment'];
     $issue_type = $issue['issue_type'];
-  } 
+  }
 }
 
 ?>
@@ -20,6 +20,11 @@ if(isset($_REQUEST['edit_previous']) AND $_REQUEST['edit_previous'] == 'true') {
 
     <div class="p-3">
       <div class="container mt-5 mx-auto card p-5" style="max-width: 40rem;">
+        <!-- There is an issue to review and we are not in edit mode -->
+        <?php if(isset($_COOKIE['issue']) AND $mode !== 'edit_mode') { ?>
+          <div class="alert alert-warning">You have an issue under review submitting another issue will overide the current issue. Click <a href="/pages/review.php">here</a> to review.</div>
+        <?php } ?>
+
         <h1 class="display-4">Simple Web Form</h1>
 
         <form action="scripts/issues.php" class="needs-validation" novalidate method="post">
@@ -56,7 +61,7 @@ if(isset($_REQUEST['edit_previous']) AND $_REQUEST['edit_previous'] == 'true') {
             </div>
           </div>
 
-          <button type="submit" name="submit_issue" class="btn btn-primary">Update</button>
+          <button type="submit" name="submit_issue" class="btn btn-primary">Submit</button>
           <?php  if($mode == 'edit_mode') {?>
             <a href="pages/review.php" name="cancel_edit" class="btn btn-danger">Cancel editing</a>
           <?php } ?>
